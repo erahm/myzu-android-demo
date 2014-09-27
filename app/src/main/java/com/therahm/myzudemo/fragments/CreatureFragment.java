@@ -43,8 +43,10 @@ public class CreatureFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_creature, container, false);
         ImageView creatureImage = (ImageView) view.findViewById(R.id.creature_image);
         TextView creatureName = (TextView) view.findViewById(R.id.creature_name);
+        TextView creatureType = (TextView) view.findViewById(R.id.creature_type);
         creatureImage.setImageBitmap(creature.getPhoto());
         creatureName.setText(creature.getName());
+        creatureType.setText(creature.getType());
 
         return view;
     }
