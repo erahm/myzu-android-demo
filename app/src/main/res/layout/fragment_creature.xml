@@ -1,7 +1,28 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.therahm.myzudemo.fragments.CreatureFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.therahm.myzudemo.fragments.CreatureFragment">
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/creature_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/creature_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/creature_image"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/creature_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/creature_name"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>

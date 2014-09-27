@@ -1,5 +1,8 @@
 package com.therahm.myzudemo.controllers;
 
+import android.os.AsyncTask;
+import android.util.Log;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
@@ -10,7 +13,10 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.ByteArrayOutputStream;
 
 public class RequestTask {
-    public String execute(String uri) {
+
+    private String response;
+
+    protected String retrieveResponse (String uri) {
         String responseString = null;
         HttpClient httpclient = new DefaultHttpClient();
         HttpResponse response;
@@ -33,7 +39,14 @@ public class RequestTask {
         catch (Exception e) {
             e.printStackTrace();
         }
+        Log.d("doInBackground response string: ", responseString);
 
-        return responseString;
+        this.response = responseString;
+
+        return this.response;
+    }
+
+    public String getResponse() {
+        return response;
     }
 }

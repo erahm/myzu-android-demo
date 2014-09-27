@@ -1,6 +1,8 @@
 package com.therahm.myzudemo;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
@@ -14,7 +16,7 @@ import com.therahm.myzudemo.models.Creature;
 import java.util.ArrayList;
 
 
-public class Main extends FragmentActivity {
+public class Main extends FragmentActivity implements CreatureFragment.OnFragmentInteractionListener {
 
     protected CreatureController creatureController;
     protected ViewPager viewPager;
@@ -25,17 +27,23 @@ public class Main extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         creatureController = new CreatureController();
-
-        ArrayList<Creature> creatures = creatureController.fetchCreatures("http://myzu-demo.herokuapp.com/creatures");
-
         viewPager = (ViewPager) findViewById(R.id.pager);
-        pagerAdapter = new Adapter(getSupportFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
-        ArrayList<CreatureFragment> fragments = new ArrayList<CreatureFragment>();
+        String creaturesUri = "http://myzu-demo.herokuapp.com/creatures";
+
+        ArrayList<Creature> creatures = creatureController.fetchCreatures(creaturesUri);
+        ArrayList<Fragment> fragments = new ArrayList<Fragment>();
 
         for (Creature creature: creatures) {
             fragments.add(CreatureFragment.newInstance(creature));
         }
+
+        pagerAdapter = new Adapter(getSupportFragmentManager(), fragments);
+        viewPager.setAdapter(pagerAdapter);
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }

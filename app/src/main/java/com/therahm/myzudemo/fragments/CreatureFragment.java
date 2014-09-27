@@ -3,15 +3,16 @@ package com.therahm.myzudemo.fragments;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.therahm.myzudemo.R;
 import com.therahm.myzudemo.models.Creature;
 
-import org.json.JSONObject;
 
 public class CreatureFragment extends Fragment {
     private Creature creature;
@@ -33,17 +34,21 @@ public class CreatureFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_creature, container, false);
+        View view = inflater.inflate(R.layout.fragment_creature, container, false);
+        ImageView creatureImage = (ImageView) view.findViewById(R.id.creature_image);
+        TextView creatureName = (TextView) view.findViewById(R.id.creature_name);
+        creatureImage.setImageBitmap(creature.getPhoto());
+        creatureName.setText(creature.getName());
+
+        return view;
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -57,9 +62,10 @@ public class CreatureFragment extends Fragment {
         super.onAttach(activity);
         try {
             mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
+        }
+        catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+                                         + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -74,7 +80,7 @@ public class CreatureFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
+     * <p/>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
