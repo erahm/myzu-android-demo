@@ -16,7 +16,7 @@ import com.therahm.myzudemo.models.Creature;
 import java.util.ArrayList;
 
 
-public class Main extends FragmentActivity implements CreatureFragment.OnFragmentInteractionListener {
+public class Main extends FragmentActivity {
 
     protected CreatureController creatureController;
     protected ViewPager viewPager;
@@ -39,11 +39,6 @@ public class Main extends FragmentActivity implements CreatureFragment.OnFragmen
 
         pagerAdapter = new Adapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(pagerAdapter);
-
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
     }
 }
